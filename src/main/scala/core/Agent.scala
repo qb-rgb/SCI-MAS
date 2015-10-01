@@ -4,7 +4,17 @@ package core
   *
   * @author Quentin Baert
   */
-abstract class Agent(environment: Environment) {
+trait Agent {
+
+  val environment: Environment
+
+  def posX: Int
+
+  def posY: Int
+
+  def dirX: Int
+
+  def dirY: Int
 
   def decide: Unit
 
