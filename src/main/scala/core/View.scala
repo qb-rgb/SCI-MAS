@@ -1,6 +1,6 @@
 package core
 
-import javax.swing.JFrame
+import javax.swing.{JPanel, JFrame}
 
 /** Frame to show the particle room evolve.
   *
@@ -13,7 +13,13 @@ import javax.swing.JFrame
   */
 abstract class MASView(val mas: MAS, val agentSize: Int, val slow: Int) extends JFrame {
 
-  def updateContainer: Unit
+  // Get an adapted canvas for the view
+  protected def getCanvas: JPanel
+
+  /** Container of the frame. */
+  val container = this.getCanvas
+
+  this.setContentPane(this.container)
 
   /** Begin the simulation of the particle room. */
   def run: Unit = {
@@ -31,7 +37,7 @@ abstract class MASView(val mas: MAS, val agentSize: Int, val slow: Int) extends 
     }
 
     // And show the environment state
-    this.updateContainer
+    this.container.repaint()
 
     run
   }

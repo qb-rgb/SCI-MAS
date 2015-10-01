@@ -56,12 +56,10 @@ class ParticlesRoomUI(
   this.setLocationRelativeTo(null)
   this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
 
-  private val container = new Canvas(this.propWidth, this.propHeight, this.mas, this.agentSize)
-
   this.setContentPane(container)
   this.setVisible(true)
 
-  override def updateContainer: Unit =
-    this.container.repaint()
+  override def getCanvas: JPanel =
+    new Canvas(this.propWidth, this.propHeight, this.mas, this.agentSize)
 
 }
