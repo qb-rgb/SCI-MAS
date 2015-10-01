@@ -10,6 +10,7 @@ package core
   */
 abstract class Environment(val width: Int, val height: Int) {
 
+  type Cell = Option[Agent]
 
   protected val cells = Array.ofDim[Cell](this.width, this.height)
 
