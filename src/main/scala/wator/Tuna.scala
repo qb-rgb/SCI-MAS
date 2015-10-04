@@ -35,11 +35,11 @@ class Tuna(
 
   /** @see core.Agent.decide() */
   override def decide: Unit = {
+    // The tuna try to move in free cell
+    this.moveInFreeCell
+
     // Does the tuna reproduce itself ?
     this.testReproduction
-
-    // Whatever happened, the tuna try to moveInFreeCell
-    this.moveInFreeCell
   }
 
 }
