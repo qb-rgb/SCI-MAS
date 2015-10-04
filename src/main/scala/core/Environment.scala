@@ -10,9 +10,7 @@ package core
   */
 abstract class Environment(val width: Int, val height: Int) {
 
-  type Cell = Option[Agent]
-
-  protected val cells = Array.ofDim[Cell](this.width, this.height)
+  protected val cells = Array.ofDim[Boolean](this.width, this.height)
 
   /** Determine if a cell of the environment is empty or not.
     *
@@ -20,7 +18,7 @@ abstract class Environment(val width: Int, val height: Int) {
     * @param y ordinate of the cell
     * @return true if the cell is empty, false otherwise
     */
-  def isEmpty(x: Int, y: Int): Boolean = this.cells(x)(y) == None
+  def isEmpty(x: Int, y: Int): Boolean = this.cells(x)(y) == false
 
   /** Determine if a cell of the environment is full or not
     *
@@ -52,7 +50,7 @@ abstract class Environment(val width: Int, val height: Int) {
     * @param a agent to add in the environment
     */
   def addAgent(a: Agent): Unit =
-    this.cells(a.posX)(a.posY) = Some(a)
+    this.cells(a.posX)(a.posY) = true
 
   /** Empty a cell.
     *
@@ -60,9 +58,8 @@ abstract class Environment(val width: Int, val height: Int) {
     * @param y ordinate of the cell
     */
   def emptyCell(x: Int, y: Int): Unit =
-    this.cells(x)(y) = None
+    this.cells(x)(y) = false
 
-  def getAgentAt(x: Int, y: Int): Agent =
-    this.cells(x)(y).get
+  def getAgentAt(x: Int, y: Int): Agent
 
 }
