@@ -78,4 +78,10 @@ abstract class Environment(val width: Int, val height: Int) {
     */
   def getAgentAt(x: Int, y: Int): Agent
 
+  /** Get the agents in the environment.
+    *
+    * @return agents in the environment
+    */
+  def getAgents: List[Agent]
+
 }

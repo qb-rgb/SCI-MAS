@@ -68,7 +68,7 @@ object ParticlesRoom {
 
       val env = new ParticlesEnvironment(width, height)
       val particles = new ParticlesGenerator(env).generate(number)
-      val mas = new MAS(env, particles)
+      val mas = new MAS(env)
 
       new ParticlesRoomUI(mas, size, sleep).run
     } else

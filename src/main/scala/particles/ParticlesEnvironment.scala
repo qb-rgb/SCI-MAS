@@ -26,4 +26,7 @@ class ParticlesEnvironment(
     super.addAgent(a)
   }
 
+  /** @see core.Environment.getAgents() */
+  def getAgents: List[Particle] = this.particles.values.toList
+
 }

@@ -21,6 +21,9 @@ class WatorEnvironment(
   /** @see core.Environment.getAgentAt() */
   override def getAgentAt(x: Int, y: Int): Fish = this.fishes(x, y)
 
+  /** @see core.Environment.getAgents() */
+  override def getAgents: List[Fish] = this.fishes.values.toList
+
   /** @see core.Environment.emptyCell() */
   override def emptyCell(x: Int, y: Int): Unit = {
     this.fishes = this.fishes - ((x, y))
