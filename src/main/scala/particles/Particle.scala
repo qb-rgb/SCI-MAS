@@ -1,6 +1,6 @@
 package particles
 
-import core.{Agent, Environment}
+import core.{Agent}
 
 /** Agent for a particles room simulation.
   *
@@ -14,7 +14,7 @@ import core.{Agent, Environment}
   * @author Quentin Baert
   */
 class Particle(
-  override val environment: Environment,
+  override val environment: ParticlesEnvironment,
   var posX: Int,
   var posY: Int,
   var dirX: Int,
