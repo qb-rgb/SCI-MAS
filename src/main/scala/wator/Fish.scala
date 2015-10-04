@@ -23,9 +23,6 @@ abstract class Fish(override val environment: WatorEnvironment) extends Agent {
     */
   protected def updatePos(newX: Int, newY: Int): Unit
 
-  /** Time before the fish can reproduce itself. */
-  def breedingAge: Int
-
   /** Initialize the breedingAge of the fish. */
   protected def initBreedingAge: Unit
 
