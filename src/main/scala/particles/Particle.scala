@@ -41,6 +41,7 @@ class Particle(
     val newX = this.posX + this.dirX
     val newY = this.posY + this.dirY
 
+    // If it runs into a wall, the particle bounce against it
     if (this.environment.isOut(newX, newY)) {
       val (newDirX, newDirY) =
         if (newX < 0 || newX >= this.environment.width)
@@ -49,11 +50,15 @@ class Particle(
           (this.dirX, this.dirY * (-1))
 
       this.updateDir(newDirX, newDirY)
-    } else if (this.environment.isFull(newX, newY)) {
+    }
+    // If an other particle is on its way, the particle bounce too
+    else if (this.environment.isFull(newX, newY)) {
       val other = this.environment.getAgentAt(newX, newY)
 
       this.updateDir(this.dirX * other.dirX, this.dirY * other.dirY)
-    } else {
+    }
+    // Otherwise, it continues
+    else {
       this.updatePos(newX, newY)
       this.environment.emptyCell(this.posX, this.posY)
       this.environment.addAgent(this)
