@@ -64,6 +64,12 @@ abstract class Environment(val width: Int, val height: Int) {
   def emptyCell(x: Int, y: Int): Unit =
     this.cells(x)(y) = false
 
+  /** Get the agent at the (x, y) position in the environment.
+    *
+    * @param x abscissa of the agent
+    * @param y ordinate of the agent
+    * @return agent at the (x, y) position in the environment
+    */
   def getAgentAt(x: Int, y: Int): Agent
 
 }
