@@ -54,8 +54,11 @@ class Particle(
     // If an other particle is on its way, the particle bounce too
     else if (this.environment.isFull(newX, newY)) {
       val other = this.environment.getAgentAt(newX, newY)
+      val thisDirX = this.dirX
+      val thisDirY = this.dirY
 
-      this.updateDir(this.dirX * (-1), this.dirY * (-1))
+      this.updateDir(other.dirX, other.dirY)
+      other.updateDir(thisDirX, thisDirY)
     }
     // Otherwise, it continues
     else {
