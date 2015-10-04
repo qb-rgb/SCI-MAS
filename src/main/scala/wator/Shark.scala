@@ -87,6 +87,7 @@ class Shark(
     else {
       // Does the shark can eat ?
       if (!this.testEat)
+        // If not, it try to move in a free cell
         this.moveInFreeCell
 
       // Does the shark reproduce itself ?
