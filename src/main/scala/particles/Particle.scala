@@ -59,8 +59,8 @@ class Particle(
     }
     // Otherwise, it continues
     else {
-      this.updatePos(newX, newY)
       this.environment.emptyCell(this.posX, this.posY)
+      this.updatePos(newX, newY)
       this.environment.addAgent(this)
     }
   }
