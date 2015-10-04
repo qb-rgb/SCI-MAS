@@ -1,12 +1,12 @@
 package wator
 
-import core.Actor
+import core.Agent
 
 /** Fish evolving in a prey-predator simulation.
   *
   * @author Quentin Baert
   */
-trait Fish extends Actor {
+trait Fish extends Agent {
 
   /** Time before the fish can reproduce itself. */
   def breedingAge: Int
