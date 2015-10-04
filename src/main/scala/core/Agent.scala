@@ -12,10 +12,6 @@ trait Agent {
 
   def posY: Int
 
-  def dirX: Int
-
-  def dirY: Int
-
   def decide: Unit
 
 }
