@@ -16,6 +16,12 @@ abstract class Environment(val width: Int, val height: Int) {
     */
   protected val cells = Array.ofDim[Boolean](this.width, this.height)
 
+  // Initialize cells
+  for {
+    x <- 0 until this.width
+    y <- 0 until this.height
+  } this.cells(x)(y) = false
+
   /** Determine if a cell of the environment is empty or not.
     *
     * @param x abscissa of the cell
