@@ -31,7 +31,7 @@ class Particle(
   }
 
   // Update directions of the particle
-  private def updateDir(newX: Int, newY: Int): Unit = {
+  def updateDir(newX: Int, newY: Int): Unit = {
     this.dirX = newX
     this.dirY = newY
   }
