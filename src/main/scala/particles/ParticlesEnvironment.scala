@@ -20,6 +20,7 @@ class ParticlesEnvironment(
     super.emptyCell(x, y)
   }
 
+  /** @see core.Environment.addAgent() */
   def addAgent(a: Particle): Unit = {
     this.particles = this.particles + ((a.posX, a.posY) -> a)
     super.addAgent(a)
