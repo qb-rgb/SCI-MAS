@@ -33,6 +33,7 @@ class Particle(
     this.dirY = newY
   }
 
+  /** @see core.Agent.decide() */
   override def decide: Unit = {
     val newX = this.posX + this.dirX
     val newY = this.posY + this.dirY

@@ -10,6 +10,10 @@ package core
   */
 abstract class Environment(val width: Int, val height: Int) {
 
+  /** Boolean array to represent if a cell is empty or not.
+    * cells(x)(y) equals true if an agent is in the environment at the (x, y)
+    * position.
+    */
   protected val cells = Array.ofDim[Boolean](this.width, this.height)
 
   /** Determine if a cell of the environment is empty or not.
