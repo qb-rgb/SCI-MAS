@@ -55,7 +55,7 @@ class Particle(
     else if (this.environment.isFull(newX, newY)) {
       val other = this.environment.getAgentAt(newX, newY)
 
-      this.updateDir(this.dirX * other.dirX, this.dirY * other.dirY)
+      this.updateDir(this.dirX * (-1), this.dirY * (-1))
     }
     // Otherwise, it continues
     else {
