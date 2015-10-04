@@ -58,13 +58,15 @@ abstract class Fish(override val environment: WatorEnvironment) extends Agent {
 
   /** Test if the fish can reproduce itself. If yes, apply the reproduction. */
   protected def testReproduction: Unit =
-    if (this.breedingAge <= 0) {
+    if (this.breedingAge <= 0)
       this.getFreeCell match {
-        case Some((x, y)) => this.reproduceIn(x, y)
+        case Some((x, y)) => {
+          this.reproduceIn(x, y)
+          this.initBreedingAge
+        }
         case _            =>
       }
-      this.initBreedingAge
-    } else this.decreaseBreedingAge
+    else this.decreaseBreedingAge
 
   /** Make the fish try to move in a free cell around it. */
   protected def moveInFreeCell: Unit = this.getFreeCell match {
