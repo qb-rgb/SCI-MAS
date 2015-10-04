@@ -24,7 +24,7 @@ class Tuna(
     this.breedingAge -= 1
 
   /** @see wator.Fish.reproduceIn() */
-  override def reproduceIn(x: Int, y: Int): Unit =
+  override protected def reproduceIn(x: Int, y: Int): Unit =
     this.environment.addAgent(new Tuna(this.environment, x, y))
 
   /** @see core.Agent.decide() */
