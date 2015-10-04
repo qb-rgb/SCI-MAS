@@ -77,12 +77,15 @@ class Shark(
       this.environment.addAgent(this)
       true
     }
-    case None         => false
+    case None         => {
+      this.starvationTime -= 1
+      false
+    }
   }
 
   /** @see core.Agent.decide() */
   override def decide: Unit =
-    if (this.starvationTime == 0)
+    if (this.starvationTime <= 0)
       this.environment.emptyCell(this.posX, this.posY)
     else {
       // Does the shark can eat ?
