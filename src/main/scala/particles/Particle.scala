@@ -30,7 +30,11 @@ class Particle(
     this.posY = newY
   }
 
-  // Update directions of the particle
+  /** Update the direction of the particle.
+    *
+    * @param newX new abscissa direction of the particle
+    * @param newY new ordinate direction of the particle
+    */
   def updateDir(newX: Int, newY: Int): Unit = {
     this.dirX = newX
     this.dirY = newY
