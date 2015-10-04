@@ -29,19 +29,25 @@ abstract class Fish(override val environment: WatorEnvironment) extends Agent {
   /** Decrease the breeding age of the fish. */
   protected def decreaseBreedingAge: Unit
 
+  /** Get the neighbourhood of the fish.
+    *
+    * @return list which contains the neighbourhood of the fish
+    */
+  protected def getNeighbourhood: List[(Int, Int)] = { for {
+    x <- (this.posX - 1) to (this.posX + 1)
+    y <- (this.posY - 1) to (this.posY + 1)
+    if this.environment.isUnder(x, y)
+  } yield (x, y) }.toList
+
   /** Get a random free cell around the fish if it exists.
     *
     * @return an optional free cell around the fish
     */
   protected def getFreeCell: Option[(Int, Int)] = {
-    val nghds = for {
-      x <- (this.posX - 1) to (this.posX + 1)
-      y <- (this.posY - 1) to (this.posY + 1)
-    } yield (x, y)
+    val nghds = this.getNeighbourhood
 
     val freeNghds = nghds filter {
-      case (x, y) =>
-        this.environment.isUnder(x, y) && this.environment.isEmpty(x, y)
+      case (x, y) => this.environment.isEmpty(x, y)
     }
 
     if (freeNghds.isEmpty)
