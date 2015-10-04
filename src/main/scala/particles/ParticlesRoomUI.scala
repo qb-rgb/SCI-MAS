@@ -41,6 +41,7 @@ private class Canvas(width: Int, height: Int, mas: MAS, agentSize: Int) extends 
 
 }
 
+/** User interface of the particles room. */
 class ParticlesRoomUI(
   override val mas: MAS,
   override val agentSize: Int,
