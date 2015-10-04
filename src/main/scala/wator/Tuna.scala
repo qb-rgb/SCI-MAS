@@ -1,16 +1,21 @@
 package wator
 
+/** Represent a tuna (the prey) in a prey-predator simulation.
+  *
+  * @constructor create a new tuna in the environment.
+  * @param environment environment of the tuna
+  * @param posX abscissa of the tuna in its environment
+  * @param posY ordinate of the tuna in its environment
+  *
+  * @author Quentin Baert
+  */
 class Tuna(
   override val environment: WatorEnvironment,
   var posX: Int,
   var posY: Int
 ) extends Fish(environment) {
 
-  /** Breeding age of the tuna. */
-  var breedingAge: Int = _
-  this.initBreedingAge
-
-  // Update positions of the fish
+  /** @see wator.Fish.updatePos() */
   protected def updatePos(newX: Int, newY: Int): Unit = {
     this.posX = newX
     this.posY = newY
@@ -20,6 +25,7 @@ class Tuna(
   override protected def initBreedingAge: Unit =
     this.breedingAge = WatorConfig.tunaBreedingAge
 
+  /** @see wator.Fish.decreaseBreedingAge() */
   override protected def decreaseBreedingAge: Unit =
     this.breedingAge -= 1
 
