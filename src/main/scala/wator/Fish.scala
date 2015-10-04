@@ -1,5 +1,7 @@
 package wator
 
+import core.Actor
+
 /** Fish evolving in a prey-predator simulation.
   *
   * @author Quentin Baert
