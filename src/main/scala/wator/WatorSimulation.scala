@@ -83,9 +83,6 @@ object WatorSimulation {
       val fishes = new FishesGenerator(env, config).generate(nTuna, nShark)
       val mas = new WatorMAS(env)
 
-      println("nTuna: " + nTuna)
-      println("nShark: " + nShark)
-
       new WatorUI(mas, size, sleep).run
     } else
       this.printUsage
