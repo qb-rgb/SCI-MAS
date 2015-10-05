@@ -1,7 +1,5 @@
 package wator
 
-import core.MAS
-
 /** Main program.
   *
   * @author Quentin Baert
@@ -83,7 +81,7 @@ object WatorSimulation {
       val env = new WatorEnvironment(width, height)
       val config = new WatorConfig(btTuna, btShark, stShark)
       val fishes = new FishesGenerator(env, config).generate(nTuna, nShark)
-      val mas = new MAS(env)
+      val mas = new WatorMAS(env)
 
       println("nTuna: " + nTuna)
       println("nShark: " + nShark)
