@@ -9,8 +9,8 @@ import javax.swing.{JPanel, JFrame}
 private class Canvas(width: Int, height: Int, mas: MAS, agentSize: Int) extends JPanel {
 
   private def attributeColor(a: Agent): Color = a match {
-    case _: Tuna => Color.BLUE
-    case _       => Color.RED
+    case _: Tuna  => Color.BLUE
+    case _: Shark => Color.RED
   }
 
   private def agentsAndColors =
