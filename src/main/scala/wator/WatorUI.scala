@@ -13,7 +13,7 @@ private class Canvas(width: Int, height: Int, mas: MAS, agentSize: Int) extends 
     case _       => Color.RED
   }
 
-  private val agentsAndColors =
+  private def agentsAndColors =
     for (a <- this.mas.agents) yield (a, this attributeColor a)
 
   override def paintComponent(g: Graphics): Unit = {
