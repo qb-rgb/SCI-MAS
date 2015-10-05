@@ -59,7 +59,9 @@ class Shark(
     val nghd = this.getNeighbourhood
 
     val tunasPos = nghd filter {
-      case (x, y) => this canEat (this.environment.getAgentAt(x, y))
+      case (x, y) =>
+        this.environment.isFull(x, y) &&
+        (this canEat (this.environment.getAgentAt(x, y)))
     }
 
     if (tunasPos.isEmpty)
