@@ -75,6 +75,7 @@ class Shark(
     case Some((x, y)) => {
       this.environment.emptyCell(x, y)
       this.eat
+      this.environment.emptyCell(this.posX, this.posY)
       this.updatePos(x, y)
       this.environment.addAgent(this)
       true
