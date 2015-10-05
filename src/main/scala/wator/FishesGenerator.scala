@@ -46,8 +46,10 @@ class FishesGenerator(val environment: WatorEnvironment) {
 
         if (fishes exists (x => x.posX == fish.posX && x.posY == fish.posY))
           innerGenerate(nb, f, fishes)
-        else
+        else {
+          this.environment.addAgent(fish)
           innerGenerate(nb - 1, f, fish :: fishes)
+        }
       }
 
     innerGenerate(nbShark, "shark", innerGenerate(nbTuna, "tuna", Nil))

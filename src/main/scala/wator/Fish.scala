@@ -9,9 +9,6 @@ import scala.util.Random
   */
 abstract class Fish(override val environment: WatorEnvironment) extends Agent {
 
-  // Add the fish in its environment at the creation
-  this.environment.addAgent(this)
-
   /** Time before the fish can reproduce itself. */
   var breedingAge: Int = _
   this.initBreedingAge

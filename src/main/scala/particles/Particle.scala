@@ -21,9 +21,6 @@ class Particle(
   var dirY: Int
 ) extends Agent {
 
-  // Add the particle in its environment at the creation
-  this.environment.addAgent(this)
-
   // Update positions of the particle
   private def updatePos(newX: Int, newY: Int): Unit = {
     this.posX = newX

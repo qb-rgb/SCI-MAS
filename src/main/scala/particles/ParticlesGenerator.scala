@@ -44,8 +44,10 @@ class ParticlesGenerator(environment: ParticlesEnvironment) {
 
         if (particles exists (x => x.posX == p.posX && x.posY == p.posY))
           innerGenerate(nb, particles)
-        else
+        else {
+          this.environment.addAgent(p)
           innerGenerate(nb - 1, p :: particles)
+        }
       }
 
     innerGenerate(n, Nil)
