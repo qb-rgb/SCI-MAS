@@ -78,6 +78,7 @@ class Shark(
   protected def testEat: Boolean = this.smellTuna match {
     case Some((x, y)) => {
       this.environment.emptyCell(x, y)
+      this.environment.affectCell(x, y)
       this.eat
       this.environment.emptyCell(this.posX, this.posY)
       this.updatePos(x, y)
