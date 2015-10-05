@@ -55,7 +55,7 @@ class FishesGenerator(
       else {
         val fish = this.generateOneFish(f)
 
-        if (fishes exists (x => x.posX == fish.posX && x.posY == fish.posY))
+        if (this.environment.isFull(fish.posX, fish.posY))
           innerGenerate(nb, f, fishes)
         else {
           this.environment.addAgent(fish)
