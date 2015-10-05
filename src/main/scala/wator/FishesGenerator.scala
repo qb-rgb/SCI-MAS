@@ -9,7 +9,10 @@ import scala.util.Random
   *
   * @author Quentin Baert
   */
-class FishesGenerator(val environment: WatorEnvironment) {
+class FishesGenerator(
+  val environment: WatorEnvironment,
+  val config: WatorConfig
+) {
 
   // Range of the possible abscissa values
   private val abscissas = 0 until this.environment.width
@@ -26,8 +29,16 @@ class FishesGenerator(val environment: WatorEnvironment) {
     val posY = this.ordinates(Random.nextInt(this.environment.height))
 
     f match {
-      case "tuna" => new Tuna(this.environment, posX, posY)
-      case _      => new Shark(this.environment, posX, posY)
+      case "tuna" =>
+        new Tuna(this.environment, posX, posY, this.config.tunaBreedingAge)
+      case _      =>
+        new Shark(
+          this.environment,
+          posX,
+          posY,
+          this.config.sharkBreedingAge,
+          this.config.sharkStarvationTime
+        )
     }
   }
 

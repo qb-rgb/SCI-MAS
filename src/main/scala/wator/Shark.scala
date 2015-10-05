@@ -14,10 +14,12 @@ import scala.util.Random
 class Shark(
   override val environment: WatorEnvironment,
   var posX: Int,
-  var posY: Int
+  var posY: Int,
+  initialBreedingAge: Int,
+  initialStarvationTime: Int
 ) extends Fish(environment) {
 
-  protected var starvationTime: Int = WatorConfig.sharkStarvationTime
+  protected var starvationTime: Int = this.initialStarvationTime
 
   /** @see wator.Fish.updatePos() */
   protected def updatePos(newX: Int, newY: Int): Unit = {
@@ -27,7 +29,7 @@ class Shark(
 
   /** @see wator.Fish.initBreedingAge() */
   override protected def initBreedingAge: Unit =
-    this.breedingAge = WatorConfig.sharkBreedingAge
+    this.breedingAge = this.initialBreedingAge
 
   /** @see wator.Fish.decreaseBreedingAge() */
   override protected def decreaseBreedingAge: Unit =
@@ -35,11 +37,13 @@ class Shark(
 
   /** @see wator.Fish.reproduceIn() */
   override protected def reproduceIn(x: Int, y: Int): Unit =
-    this.environment.addAgent(new Shark(this.environment, x, y))
+    this.environment.addAgent(
+      new Shark(this.environment, x, y, this.initialBreedingAge, this.initialStarvationTime)
+    )
 
   /** Make the shark eat. Reset its starvation time. */
   protected def eat: Unit =
-    this.starvationTime = WatorConfig.sharkStarvationTime
+    this.starvationTime = this.initialStarvationTime
 
   /** Determine if the shark can eat a fish or not.
     *

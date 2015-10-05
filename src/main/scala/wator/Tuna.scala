@@ -12,7 +12,8 @@ package wator
 class Tuna(
   override val environment: WatorEnvironment,
   var posX: Int,
-  var posY: Int
+  var posY: Int,
+  val initialBreedingAge: Int
 ) extends Fish(environment) {
 
   /** @see wator.Fish.updatePos() */
@@ -23,7 +24,7 @@ class Tuna(
 
   /** @see wator.Fish.initBreedingAge() */
   override protected def initBreedingAge: Unit =
-    this.breedingAge = WatorConfig.tunaBreedingAge
+    this.breedingAge = this.initialBreedingAge
 
   /** @see wator.Fish.decreaseBreedingAge() */
   override protected def decreaseBreedingAge: Unit =
@@ -31,7 +32,7 @@ class Tuna(
 
   /** @see wator.Fish.reproduceIn() */
   override protected def reproduceIn(x: Int, y: Int): Unit =
-    this.environment.addAgent(new Tuna(this.environment, x, y))
+    this.environment.addAgent(new Tuna(this.environment, x, y, this.initialBreedingAge))
 
   /** @see core.Agent.decide() */
   override def decide: Unit = {
