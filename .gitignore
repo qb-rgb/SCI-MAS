@@ -89,3 +89,7 @@ src_managed/
 project/boot/
 .history
 .cache
+
+*.png
+*.data
+*.jar
