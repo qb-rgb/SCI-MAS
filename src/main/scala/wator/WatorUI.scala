@@ -3,7 +3,8 @@ package wator
 import core.{Agent, MAS, MASView}
 import java.awt.Color
 import java.awt.Graphics
-import javax.swing.{JPanel, JFrame}
+import java.awt.event.{WindowEvent, WindowAdapter}
+import javax.swing.{JPanel, JFrame, WindowConstants}
 
 // Canvas to print the environment
 private class Canvas(width: Int, height: Int, mas: MAS, agentSize: Int) extends JPanel {
@@ -47,7 +48,8 @@ class WatorUI(
   this.setTitle("Wator")
   this.setSize(this.propWidth, this.propHeight)
   this.setLocationRelativeTo(null)
-  this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+  this.addWindowListener(new WindowEventHandler)
+  this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE)
 
   this.setContentPane(container)
   this.setVisible(true)
@@ -55,4 +57,11 @@ class WatorUI(
   override def getCanvas: JPanel =
     new Canvas(this.propWidth, this.propHeight, this.mas, this.agentSize)
 
+  class WindowEventHandler extends WindowAdapter {
+    override def windowClosing(e: WindowEvent): Unit = {
+      WatorData.writeBalance
+      WatorData.writePop
+      System.exit(0)
+    }
+  }
 }
