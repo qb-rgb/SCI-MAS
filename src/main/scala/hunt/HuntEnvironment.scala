@@ -7,8 +7,10 @@ class HuntEnvironment(
   override val height: Int
 ) extends Environment(width, height) {
 
+  // Agents of the environment
   private var agents: Map[(Int, Int), Agent] = Map()
 
+  // Preys in the environment
   private var preys: List[Prey] = Nil
 
   /** @see core.Environment.agents() */
@@ -61,6 +63,7 @@ class HuntEnvironment(
     array
   }
 
+  /** Get a Djikstra array for all prey of the environment. */
   def getDijkstraForAllPreys: List[Array[Array[Int]]] = (for {
     p <- this.preys
   } yield (this getDijkstraFor p)).toList
