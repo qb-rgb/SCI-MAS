@@ -9,6 +9,8 @@ class HuntEnvironment(
 
   private var agents: Map[(Int, Int), Agent] = Map()
 
+  private var preys: List[Prey] = Nil
+
   /** @see core.Environment.agents() */
   override def getAgents: List[Agent] = this.agents.values.toList
 
@@ -18,6 +20,9 @@ class HuntEnvironment(
 
   /** @see core.Environment.emptyCell() */
   override def emptyCell(x: Int, y: Int): Unit = {
+    if (isPrey(this.agents(x, y)))
+      this.preys = this.preys diff List(this.agents(x, y))
+
     this.agents = this.agents - ((x, y))
     super.emptyCell(x, y)
   }
@@ -25,6 +30,10 @@ class HuntEnvironment(
   /** @see core.Environment.addAgent() */
   override def addAgent(a: Agent): Unit = {
     this.agents = this.agents + ((a.posX, a.posY) -> a)
+
+    if (isPrey(a))
+      this.preys = a.asInstanceOf[Prey] :: this.preys
+
     super.addAgent(a)
   }
 
@@ -53,8 +62,8 @@ class HuntEnvironment(
   }
 
   def getDijkstraForAllPreys: List[Array[Array[Int]]] = (for {
-    a <- this.getAgents
-    if (isPrey(a))
-  } yield (this getDijkstraFor a.asInstanceOf[Prey])).toList
+    p <- this.preys
+  } yield (this getDijkstraFor p)).toList
+
 
 }
