@@ -57,6 +57,9 @@ class WatorUI(
   override def getCanvas: JPanel =
     new Canvas(this.propWidth, this.propHeight, this.mas, this.agentSize)
 
+  override def stopCondition: Boolean =
+    this.mas.environment.getSharksNb == 0
+
   class WindowEventHandler extends WindowAdapter {
     override def windowClosing(e: WindowEvent): Unit = {
       WatorData.writeBalance
