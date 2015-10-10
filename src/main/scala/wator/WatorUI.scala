@@ -36,7 +36,7 @@ private class Canvas(width: Int, height: Int, mas: MAS, agentSize: Int) extends 
 
 /** User interface of the Wator prey-predator simulation. */
 class WatorUI(
-  override val mas: MAS,
+  override val mas: WatorMAS,
   override val agentSize: Int,
   override val slow: Int
 ) extends MASView(mas, agentSize, slow) {
