@@ -50,10 +50,7 @@ class Shark(
     * @param f fish to eat by the shark
     * @return true if the shark can eat the fish, false otherwise
     */
-  protected def canEat(f: Fish): Boolean = f match {
-    case _: Tuna  => true
-    case _: Shark => false
-  }
+  protected def canEat(f: Fish): Boolean = isTuna(f)
 
   /** Smell if a tuna is around
     *
