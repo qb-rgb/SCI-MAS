@@ -10,7 +10,7 @@ import scala.util.Random
 abstract class Fish(override val environment: WatorEnvironment) extends Agent {
 
   /** Time before the fish can reproduce itself. */
-  var breedingAge: Int = _
+  protected var breedingAge: Int = _
   this.initBreedingAge
 
   /** Determine if the fish is dead or not. */
