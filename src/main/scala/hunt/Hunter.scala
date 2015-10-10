@@ -87,7 +87,7 @@ class Hunter(
     case None         => {
       val dijkstras = this.environment.getDijkstraForAllPreys
       val mins = dijkstras map { this getMinInArray _ }
-      val (_, (x, y)) = this findMin (mins.tail, mins.head._1, mins.head._2)
+      val (_, (x, y)) = this.findMin(mins.tail, mins.head._1, mins.head._2)
 
       this.environment.emptyCell(this.posX, this.posY)
       this.updatePos(x, y)
