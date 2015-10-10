@@ -75,6 +75,7 @@ class Hunter(
       Some((Random shuffle preyPos).head)
   }
 
+  /** @see core.Agent.decide() */
   override def decide: Unit = this.smellPrey match {
     case Some((x, y)) => {
       this.environment.emptyCell(x, y)

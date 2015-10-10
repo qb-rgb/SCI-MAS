@@ -39,6 +39,7 @@ class HuntEnvironment(
     super.addAgent(a)
   }
 
+  // Give a Djikstra array for a given prey
   private def getDijkstraFor(p: Prey): Array[Array[Int]] = {
     def buildDijkstra(array: Array[Array[Int]], pos: List[(Int, Int)], degree: Int): Unit =
       for {
