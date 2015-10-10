@@ -18,6 +18,12 @@ class WatorEnvironment(
   // Fishes and their positions
   private var fishes: Map[(Int, Int), Fish] = Map()
 
+  // Number of sharks in the environment
+  private var sharksNb: Int = 0
+
+  // Number of tunas in the environment
+  private var tunasNb: Int = 0
+
   // Determine if a cell was affected during a turn
   private val affectedCells = Array.ofDim[Boolean](this.width, this.height)
   this.initAffectedCells
@@ -45,8 +51,19 @@ class WatorEnvironment(
   /** @see core.Environment.getAgents() */
   override def getAgents: List[Fish] = this.fishes.values.toList
 
+  /** Get the number of tunas in the environment. */
+  def getTunasNb: Int = this.tunasNb
+
+  /** Get the number of sharks in the environment. */
+  def getSharksNb: Int = this.sharksNb
+
   /** @see core.Environment.emptyCell() */
   override def emptyCell(x: Int, y: Int): Unit = {
+    if (isTuna(this.getAgentAt(x, y)))
+      this.tunasNb -= 1
+    else
+      this.sharksNb -= 1
+
     this.fishes = this.fishes - ((x, y))
     super.emptyCell(x, y)
   }
@@ -54,6 +71,12 @@ class WatorEnvironment(
   /** @see core.Environment.addAgent() */
   def addAgent(f: Fish): Unit = {
     this.fishes = this.fishes + ((f.posX, f.posY) -> f)
+
+    if (isTuna(f))
+      this.tunasNb += 1
+    else
+      this.sharksNb += 1
+
     super.addAgent(f)
   }
 

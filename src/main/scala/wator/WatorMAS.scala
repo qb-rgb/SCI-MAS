@@ -16,19 +16,6 @@ class WatorMAS(override val environment: WatorEnvironment) extends MAS(environme
   private val data = WatorData
   data.raz
 
-  // (Tuna, Shark)
-  private def countPop: (Int, Int) = {
-    def innerCount(fishes: List[Agent], nt: Int, ns: Int): (Int, Int) =
-      if (fishes.isEmpty)
-        (nt, ns)
-      else fishes.head match {
-        case _: Tuna  => innerCount(fishes.tail, nt + 1, ns)
-        case _: Shark => innerCount(fishes.tail, nt, ns + 1)
-      }
-
-    innerCount(this.agents, 0, 0)
-  }
-
   /** Run one turn of the MAS.
     * In one turn, each agent of the environment speak one time.
     */
@@ -42,9 +29,8 @@ class WatorMAS(override val environment: WatorEnvironment) extends MAS(environme
 
     this.environment.initAffectedCells
 
-    val (nt, ns) = this.countPop
-    data.addTunasNb(nt)
-    data.addSharksNb(ns)
+    data.addTunasNb(this.environment.getTunasNb)
+    data.addSharksNb(this.environment.getSharksNb)
   }
 
 }
