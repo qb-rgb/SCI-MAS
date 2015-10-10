@@ -13,6 +13,9 @@ abstract class Fish(override val environment: WatorEnvironment) extends Agent {
   var breedingAge: Int = _
   this.initBreedingAge
 
+  /** Determine if the fish is dead or not. */
+  protected var dead: Boolean = false
+
   /** Update the position of the fish.
     *
     * @param newX new abscissa of the fish
@@ -25,6 +28,12 @@ abstract class Fish(override val environment: WatorEnvironment) extends Agent {
 
   /** Decrease the breeding age of the fish. */
   protected def decreaseBreedingAge: Unit
+
+  /** Kill the fish. */
+  def kill: Unit = this.dead = true
+
+  /** Determine if the fish is dead or not. */
+  def isDead: Boolean = this.dead
 
   /** Get the neighbourhood of the fish.
     *

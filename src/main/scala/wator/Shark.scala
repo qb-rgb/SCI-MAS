@@ -74,8 +74,8 @@ class Shark(
   /** Test if the shark can eat. If yes, eat. */
   protected def testEat: Boolean = this.smellTuna match {
     case Some((x, y)) => {
+      this.environment.getAgentAt(x, y).kill
       this.environment.emptyCell(x, y)
-      this.environment.affectCell(x, y)
       this.eat
       this.environment.emptyCell(this.posX, this.posY)
       this.updatePos(x, y)
@@ -90,9 +90,10 @@ class Shark(
 
   /** @see core.Agent.decide() */
   override def decide: Unit =
-    if (this.starvationTime <= 0)
+    if (this.starvationTime <= 0) {
       this.environment.emptyCell(this.posX, this.posY)
-    else {
+      this.kill
+    } else {
       // Does the shark can eat ?
       if (!this.testEat)
         // If not, it try to move in a free cell

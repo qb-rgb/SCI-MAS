@@ -24,27 +24,6 @@ class WatorEnvironment(
   // Number of tunas in the environment
   private var tunasNb: Int = 0
 
-  // Determine if a cell was affected during a turn
-  private val affectedCells = Array.ofDim[Boolean](this.width, this.height)
-  this.initAffectedCells
-
-  /** Initialize the affected cells of the environment. */
-  def initAffectedCells: Unit = for {
-    x <- 0 until this.width
-    y <- 0 until this.height
-  } this.affectedCells(x)(y) = false
-
-  /** Affect the cell in the given position.
-    *
-    * @param x abscissa of the cell
-    * @param y ordinate of the cell
-    */
-  def affectCell(x: Int, y: Int): Unit =
-    this.affectedCells(x)(y) = true
-
-  /** Determine if a cell was affected during a turn of the simulation. */
-  def isAffectedCell(x: Int, y: Int): Boolean = this.affectedCells(x)(y)
-
   /** @see core.Environment.getAgentAt() */
   override def getAgentAt(x: Int, y: Int): Fish = this.fishes(x, y)
 

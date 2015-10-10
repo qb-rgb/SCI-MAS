@@ -22,12 +22,7 @@ class WatorMAS(override val environment: WatorEnvironment) extends MAS(environme
   override def runOneTurn: Unit = {
     val orderedAgents = Random shuffle this.agents
 
-    orderedAgents foreach { a =>
-      if (!this.environment.isAffectedCell(a.posX, a.posY))
-        a.decide
-    }
-
-    this.environment.initAffectedCells
+    orderedAgents foreach { _.decide }
 
     data.addTunasNb(this.environment.getTunasNb)
     data.addSharksNb(this.environment.getSharksNb)

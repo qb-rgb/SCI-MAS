@@ -35,12 +35,13 @@ class Tuna(
     this.environment.addAgent(new Tuna(this.environment, x, y, this.initialBreedingAge))
 
   /** @see core.Agent.decide() */
-  override def decide: Unit = {
-    // The tuna try to move in free cell
-    this.moveInFreeCell
+  override def decide: Unit =
+    if (!this.isDead) {
+      // The tuna try to move in free cell
+      this.moveInFreeCell
 
-    // Does the tuna reproduce itself ?
-    this.testReproduction
-  }
+      // Does the tuna reproduce itself ?
+      this.testReproduction
+    }
 
 }
