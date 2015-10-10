@@ -16,6 +16,9 @@ abstract class MASView(val mas: MAS, val agentSize: Int, val slow: Int) extends 
   // Get an adapted canvas for the view
   protected def getCanvas: JPanel
 
+  /** Stop condition of the view. */
+  def stopCondition: Boolean = false
+
   /** Container of the frame. */
   val container = this.getCanvas
 
@@ -39,7 +42,8 @@ abstract class MASView(val mas: MAS, val agentSize: Int, val slow: Int) extends 
     // And show the environment state
     this.container.repaint()
 
-    run
+    if (!stopCondition)
+      run
   }
 
 }
