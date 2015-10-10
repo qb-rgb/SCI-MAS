@@ -19,6 +19,7 @@ class Shark(
   initialStarvationTime: Int
 ) extends Fish(environment) {
 
+  /** Starvation time of the shark */
   protected var starvationTime: Int = this.initialStarvationTime
 
   /** @see wator.Fish.updatePos() */
