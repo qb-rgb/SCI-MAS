@@ -65,5 +65,7 @@ class HuntEnvironment(
     p <- this.preys
   } yield (this getDijkstraFor p)).toList
 
+  /** Determine if the environment contains a prey. */
+  def containsPrey: Boolean = this.preys.isEmpty
 
 }
