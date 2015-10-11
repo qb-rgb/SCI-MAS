@@ -51,7 +51,7 @@ object HuntSimulation {
 
     if (this.checkOptions(options)) {
       val size = options("-size").toInt
-      val sleep = options("-size").toInt
+      val sleep = options("-sleep").toInt
       val model = options("-model")
 
       val env = ModelBuilder.buildEnvFromModel(model)
