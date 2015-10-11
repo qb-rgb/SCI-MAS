@@ -77,23 +77,26 @@ class Hunter(
   }
 
   /** @see core.Agent.decide() */
-  override def decide: Unit = this.smellPrey match {
-    case Some((x, y)) => {
-      this.environment.emptyCell(x, y)
-      this.environment.getAgentAt(x, y).asInstanceOf[Prey].kill
-      this.environment.emptyCell(this.posX, this.posY)
-      this.updatePos(x, y)
-      this.environment.addAgent(this)
-    }
+  override def decide: Unit =
+    if (this.environment.containsPrey) {
+      this.smellPrey match {
+        case Some((x, y)) => {
+          this.environment.getAgentAt(x, y).asInstanceOf[Prey].kill
+          this.environment.emptyCell(x, y)
+          this.environment.emptyCell(this.posX, this.posY)
+          this.updatePos(x, y)
+          this.environment.addAgent(this)
+        }
 
-    case None         => {
-      val dijkstras = this.environment.getDijkstraForAllPreys
-      val mins = dijkstras map { this getMinInArray _ }
-      val (_, (x, y)) = this.findMin(mins.tail, mins.head._1, mins.head._2)
+        case None         => {
+          val dijkstras = this.environment.getDijkstraForAllPreys
+          val mins = dijkstras map { this getMinInArray _ }
+          val (_, (x, y)) = this.findMin(mins.tail, mins.head._1, mins.head._2)
 
-      this.environment.emptyCell(this.posX, this.posY)
-      this.updatePos(x, y)
-      this.environment.addAgent(this)
+          this.environment.emptyCell(this.posX, this.posY)
+          this.updatePos(x, y)
+          this.environment.addAgent(this)
+        }
     }
   }
 
