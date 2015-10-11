@@ -50,6 +50,7 @@ class Hunter(
   private def getMinInArray(array: Array[Array[Int]]): (Int, (Int, Int)) = {
     val valueAndPos = for {
       (x, y) <- this.getNeighbourhood
+      if (this.environment.isEmpty(x, y))
     } yield (array(x)(y), (x, y))
 
     val (firstValue, firstPos) = valueAndPos.head
