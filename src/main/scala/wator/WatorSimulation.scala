@@ -13,7 +13,20 @@ object WatorSimulation {
 
   // Print the usage of the program
   private def printUsage: Unit = {
-    println("TO DO")
+    println(
+      "java -jar wator.jar -width [x] -height [y] -nTuna [nt] -btTuna [bt]" +
+      " -nShark [ns] -btShark [bs] -stShark [st] -size [s] -sleep [z]"
+    )
+    println("With:")
+    println("\t[x] width of the wator environment")
+    println("\t[y] height of the wator environment")
+    println("\t[nt] number of tunas to put in the wator environment")
+    println("\t[bt] breeding time of the tunas")
+    println("\t[ns] number of sharks to put in the wator environment")
+    println("\t[bs] breeding time of the sharks")
+    println("\t[st] starving time of the sharks")
+    println("\t[s] size of the fishes")
+    println("\t[z] time to wait between two turns of the simulation (in ms)")
     sys.exit(1)
   }
 

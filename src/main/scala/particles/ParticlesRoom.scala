@@ -15,9 +15,16 @@ object ParticlesRoom {
 
   // Print the usage of the program
   private def printUsage: Unit = {
-    println("java -jar particleRoom -width [width] -height [height] " +
-            "-number [number of particles] -size [size of the particles] " +
-            "-sleep [time to sleep between two turns]")
+    println(
+      "java -jar particleRoom.jar -width [x] -height [y] " +
+      "-number [n] -size [s] -sleep [z]"
+    )
+    println("With:")
+    println("\t[x] width of the particle room")
+    println("\t[y] height of the particle room")
+    println("\t[n] number of particle to put in the particles room")
+    println("\t[s] size of the particles")
+    println("\t[z] time to wait between two turns of the simulation (in ms)")
     sys.exit(1)
   }
 

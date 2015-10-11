@@ -13,7 +13,13 @@ object HuntSimulation {
 
   // Print the usage of the program
   private def printUsage: Unit = {
-    println("TO DO")
+    println(
+      "java -jar hunt.jar -model [m] -size [s] -sleep [z]"
+    )
+    println("With:")
+    println("\t[m] path to the model text file")
+    println("\t[s] size of the agent in the hunt environment")
+    println("\t[z] time to wait between two turns of the simulation (in ms)")
     sys.exit(1)
   }
 
