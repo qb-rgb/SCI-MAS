@@ -41,25 +41,11 @@ class HuntEnvironment(
 
   // Give a Djikstra array for a given prey
   private def getDijkstraFor(p: Prey): Array[Array[Int]] = {
-    def buildDijkstra(array: Array[Array[Int]], pos: List[(Int, Int)], degree: Int): Unit =
-      for {
-        (x, y) <- pos
-        if (this.isUnder(x, y))
-      } {
-        array(x)(y) = degree
-
-        val npos: List[(Int, Int)] = (for {
-          nx <- (x - 1) to (x + 1)
-          ny <- (y - 1) to (y + 1)
-          if this.isUnder(x, y) && this.isEmpty(x, y)
-        } yield (nx, ny)).toList
-
-        buildDijkstra(array, npos, degree + 1)
-      }
-
     val array = Array.ofDim[Int](this.width, this.height)
 
-    buildDijkstra(array, p.getNeighbourhood, 1)
+    for (x <- 0 until this.width)
+      for (y <- 0 until this.height)
+        array(x)(y) = math.max(math.abs(x - p.posX), math.abs(y - p.posY))
 
     array
   }
