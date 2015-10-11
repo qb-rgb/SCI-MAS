@@ -29,7 +29,12 @@ object WatorData {
     def coupleToString(couple: (Int, Int)): String =
       couple._1 + "\t" + couple._2
 
-    val file = new File("balance.data")
+    val dir = new File("watordata")
+
+    if (!dir.exists)
+      dir.mkdirs
+
+    val file = new File("watordata/balance.data")
     val bw = new BufferedWriter(new FileWriter(file))
     val text = ((this.tunasNb zip this.sharksNb) map coupleToString) mkString "\n"
 
@@ -41,7 +46,12 @@ object WatorData {
     def tripleToString(triple: (Int, Int, Int)): String =
       triple._1 + "\t" + triple._2 + "\t" + triple._3
 
-    val file = new File("pop.data")
+    val dir = new File("watordata")
+
+    if (!dir.exists)
+      dir.mkdirs
+
+    val file = new File("watordata/pop.data")
     val bw = new BufferedWriter(new FileWriter(file))
     val tripleList = ((1 to this.tunasNb.length) zip this.tunasNb) zip this.sharksNb map {
       case ((x, y), z) => (x, y, z)
